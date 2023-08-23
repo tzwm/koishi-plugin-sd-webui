@@ -17,5 +17,9 @@
   ],
   "peerDependencies": {
     "koishi": "^4.13.8"
+  },
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.20.0",
+    "node-sd-webui": "^0.0.8"
   }
 }
