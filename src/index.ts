@@ -1,7 +1,7 @@
 import { h, Context, Schema, Bot } from 'koishi';
 import sdwebui, { Client, SamplingMethod } from 'node-sd-webui';
 import * as lark from '@larksuiteoapi/node-sdk';
-
+import { decode } from 'html-entities';
 
 export const name = 'sd-webui';
 
@@ -19,7 +19,6 @@ export const Config: Schema<Config> = Schema.object({
 
 export async function apply(ctx: Context, config: Config) {
   const sdClient: Client = sdwebui({ apiUrl: config.webuiHost });
-  //const tmp = await loginSDWebUI(sdClient, config);
 
   ctx.command('sd.imagine <prompt:string>')
     .action((argv, prompt) => sdTxt2ImgCallback(argv, prompt, sdClient));
@@ -34,6 +33,7 @@ export async function sdTxt2ImgCallback(argv: any, prompt: string, sdClient: Cli
     session.send.bind(session),
   );
 
+  prompt = decode(prompt);
   const image = await txt2imgBase64(prompt, sdClient);
   replyFunc(h.image(Buffer.from(image, "base64"), 'image/png'));
 };

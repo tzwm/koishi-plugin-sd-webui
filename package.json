@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "@larksuiteoapi/node-sdk": "^1.20.0",
-    "node-sd-webui": "^0.0.8"
+    "html-entities": "^2.4.0",
+    "node-sd-webui": "file:/Users/tzwm/projects/node-sd-webui/dist"
   }
 }
