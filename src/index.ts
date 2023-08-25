@@ -18,9 +18,9 @@ export interface Config {
 }
 
 export const Config: Schema<Config> = Schema.object({
-  webuiHost: Schema.string().required(),
-  webuiUser: Schema.string().required(),
-  webuiPass: Schema.string().required(),
+  webuiHost: Schema.string(),
+  webuiUser: Schema.string(),
+  webuiPass: Schema.string(),
 })
 
 export async function apply(ctx: Context, config: Config) {
