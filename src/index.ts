@@ -13,18 +13,16 @@ export const name = 'sd-webui';
 
 export interface Config {
   webuiHost: string;
-  webuiUser: string;
-  webuiPass: string;
 }
 
 export const Config: Schema<Config> = Schema.object({
   webuiHost: Schema.string(),
-  webuiUser: Schema.string(),
-  webuiPass: Schema.string(),
 })
 
+export let sdClient: Client;
+
 export async function apply(ctx: Context, config: Config) {
-  const sdClient: Client = sdwebui({ apiUrl: config.webuiHost });
+  sdClient = sdwebui({ apiUrl: config.webuiHost });
 
   ctx.command('sd.imagine <prompt:string>')
     .action((argv, prompt) => sdTxt2ImgCallback(argv, prompt, sdClient));
